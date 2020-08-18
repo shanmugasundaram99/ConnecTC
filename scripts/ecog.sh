@@ -1,0 +1,24 @@
+#!/bin/bash
+
+SUBJECT=`basename ${PWD}`
+SESSION="presurgical"
+
+DICOM_IMAGES_DIR="dicom"
+LOCAL_TOOLS_DIR="/data/athena/share/apps/bin"
+
+CURRENT_DIR="${PWD}"
+SUBJECT_DIR="bids/sub-${SUBJECT}"
+SESSION_DIR="${SUBJECT_DIR}/ses-${SESSION}"
+RAW_NIFTY_DATA_DIR="${SESSION_DIR}/raw"
+PROC_NIFTY_DATA_DIR="${SESSION_DIR}/proc"
+TRACTOGRAPHY_NIFTY_DATA_DIR="${SESSION_DIR}/tractography"
+TRACTS_DATA_DIR="${SESSION_DIR}/tracts"
+CONNECTIVITY_DATA_DIR="${SESSION_DIR}/connectivity"
+STREAMLINES_DATA_DIR="${CONNECTIVITY_DATA_DIR}/streamlines"
+ELECTRODES_DATA_DIR="${SESSION_DIR}/electrodes"
+
+PREFIX="sub-${SUBJECT}_ses-${SESSION}"
+
+
+tune_ecog_events.py
+stat_ecog.py ${CONNECTIVITY_DATA_DIR}
